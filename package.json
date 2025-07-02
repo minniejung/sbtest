@@ -1,0 +1,13 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "test.",
+  "main": "index.js",
+  "scripts": {
+    "install": "cd front && npm install && cd ../contract && npm install",
+    "start": "cd front && npm run start",
+    "deploy": "cd contract && npm run deploy"
+  },
+  "author": "",
+  "license": "ISC"
+}

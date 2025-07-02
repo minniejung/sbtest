@@ -1,0 +1,20 @@
+{
+  "name": "hardhat-project",
+  "scripts": {
+    "deploy:ganache": "npx hardhat run scripts/deploy.ts --network ganache",
+    "deploy:kaia": "npx hardhat run scripts/deploy.ts --network kaia",
+    "test:deploy": "npx hardhat test test/deploy.test.ts",
+    "test": "npx hardhat test test/sbtBadge.test.ts"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.19",
+    "prettier": "^3.5.2",
+    "prettier-plugin-solidity": "^1.4.2"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.2.0",
+    "dotenv": "^16.4.7",
+    "ethers": "^6.13.5"
+  }
+}
