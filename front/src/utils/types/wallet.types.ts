@@ -6,3 +6,8 @@ export type MetaMaskAccountType = {
 	signer: JsonRpcSigner
 	isMetaMask: true
 }
+
+export enum BadgeType {
+	RETWEET = 0,
+	FOLLOWER = 1,
+}

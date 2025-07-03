@@ -1,19 +1,23 @@
+'use client'
+
 import { useCallback, useState } from 'react'
 
 import { Contract, ethers } from 'ethers'
 import { toast } from 'react-toastify'
 import { useWalletClient } from 'wagmi'
 
-import NftAbi from '../../../contract/abis/SbtTest.json'
+import { BadgeType } from '@/utils/types/wallet.types'
+
+import NftAbi from '../../../contract/abis/SbtBadge.json'
 
 export const useMintNft = () => {
-	const [loading, setLoading] = useState(false)
+	const [loading, setLoading] = useState<boolean>(false)
 	const { data: walletClient } = useWalletClient()
 
 	const mint = useCallback(
 		async (
 			to: string,
-			tokenId: number,
+			badgeId: BadgeType,
 			options?: {
 				onSuccess?: (receipt: ethers.TransactionReceipt) => void
 				onError?: (err: unknown) => void
@@ -43,7 +47,7 @@ export const useMintNft = () => {
 				const contract = new Contract(contractAddress, NftAbi.abi, signer)
 
 				toast.info('Minting NFT...')
-				const tx = await contract.safeMint(to, tokenId)
+				const tx = await contract.mintBadge(to, badgeId)
 				toast.success('Transaction sent. Waiting for confirmation...')
 
 				const receipt = await tx.wait()

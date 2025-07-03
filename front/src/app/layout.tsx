@@ -1,5 +1,7 @@
 'use client'
 
+import { SessionProvider } from 'next-auth/react'
+
 import '@rainbow-me/rainbowkit/styles.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ToastContainer } from 'react-toastify'
@@ -25,21 +27,23 @@ const RootLayout = ({
 			</head>
 			<body className='antialiased'>
 				<QueryClientProvider client={client}>
-					<Web3Provider>
-						<AppLayout>{children}</AppLayout>
-						<ToastContainer
-							position='top-center'
-							autoClose={3000}
-							hideProgressBar={false}
-							newestOnTop
-							closeOnClick
-							rtl={false}
-							pauseOnFocusLoss
-							draggable
-							pauseOnHover
-							theme='colored'
-						/>
-					</Web3Provider>
+					<SessionProvider>
+						<Web3Provider>
+							<AppLayout>{children}</AppLayout>
+							<ToastContainer
+								position='top-center'
+								autoClose={3000}
+								hideProgressBar={false}
+								newestOnTop
+								closeOnClick
+								rtl={false}
+								pauseOnFocusLoss
+								draggable
+								pauseOnHover
+								theme='colored'
+							/>
+						</Web3Provider>
+					</SessionProvider>
 				</QueryClientProvider>
 			</body>
 		</html>
